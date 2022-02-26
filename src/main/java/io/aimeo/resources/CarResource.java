@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 
-import io.aimeo.db.CarDAO;
+import io.aimeo.db.JdbiCarDAO;
 import io.aimeo.representations.Car;
 
 @Path("/cars")
@@ -29,8 +29,8 @@ public class CarResource {
     @Path("/getAll")
     public Response getAll() {
         return jdbi.withHandle(handle -> {
-            CarDAO carDao = getAllCars(handle);
-            List<Car> cars = carDao.getAll();
+            JdbiCarDAO jdbiCarDao = getAllCars(handle);
+            List<Car> cars = jdbiCarDao.getAll();
 
             return Response
                     .ok(cars)
@@ -42,8 +42,8 @@ public class CarResource {
     @Path("/{id}")
     public Response getById(@PathParam("id") int id) {
         return jdbi.withHandle(handle -> {
-            CarDAO carDAO = getById(handle);
-            Car car = carDAO.getById(id);
+            JdbiCarDAO jdbiCarDAO = getById(handle);
+            Car car = jdbiCarDAO.getById(id);
 
             return Response
                     .ok(car)
@@ -56,10 +56,10 @@ public class CarResource {
     public Response getCars(@PathParam("limit") int limit, @PathParam("offset") long offset,
             @PathParam("pageID") int pageID) {
         return jdbi.withHandle(handle -> {
-            CarDAO carDao = getCarDAO(handle);
+            JdbiCarDAO jdbiCarDao = getCarDAO(handle);
 
             long offsets = limit * (pageID - 1);
-            List<Car> cars = carDao.getCars(limit, offsets, pageID);
+            List<Car> cars = jdbiCarDao.getCars(limit, offsets, pageID);
 
             return Response
                     .ok(cars)
@@ -72,8 +72,8 @@ public class CarResource {
     @Path("/trucks")
     public Response getTrucks() {
         return jdbi.withHandle(handle -> {
-            CarDAO carDao = getTrucks(handle);
-            List<Car> cars = carDao.getTrucks();
+            JdbiCarDAO jdbiCarDao = getTrucks(handle);
+            List<Car> cars = jdbiCarDao.getTrucks();
 
             return Response
                     .ok(cars)
@@ -86,8 +86,8 @@ public class CarResource {
     @Path("/suvs")
     public Response getSuvs() {
         return jdbi.withHandle(handle -> {
-            CarDAO carDao = getSuvs(handle);
-            List<Car> cars = carDao.getSuvs();
+            JdbiCarDAO jdbiCarDao = getSuvs(handle);
+            List<Car> cars = jdbiCarDao.getSuvs();
 
             return Response
                     .ok(cars)
@@ -100,7 +100,7 @@ public class CarResource {
     @Path("/sedans")
     public Response getSedans() {
         return jdbi.withHandle(handle -> {
-            CarDAO carDao = getSedans(handle);
+            JdbiCarDAO carDao = getSedans(handle);
             List<Car> cars = carDao.getSedans();
 
             return Response
@@ -110,28 +110,28 @@ public class CarResource {
 
     }
 
-    CarDAO getAllCars(Handle handle) {
-        return new CarDAO(handle);
+    JdbiCarDAO getAllCars(Handle handle) {
+        return new JdbiCarDAO(handle);
     }
 
-    CarDAO getById(Handle handle) {
-        return new CarDAO(handle);
+    JdbiCarDAO getById(Handle handle) {
+        return new JdbiCarDAO(handle);
     }
 
-    CarDAO getCarDAO(Handle handle) {
-        return new CarDAO(handle);
+    JdbiCarDAO getCarDAO(Handle handle) {
+        return new JdbiCarDAO(handle);
     }
 
-    CarDAO getTrucks(Handle handle) {
-        return new CarDAO(handle);
+    JdbiCarDAO getTrucks(Handle handle) {
+        return new JdbiCarDAO(handle);
     }
 
-    CarDAO getSuvs(Handle handle) {
-        return new CarDAO(handle);
+    JdbiCarDAO getSuvs(Handle handle) {
+        return new JdbiCarDAO(handle);
     }
 
-    CarDAO getSedans(Handle handle) {
-        return new CarDAO(handle);
+    JdbiCarDAO getSedans(Handle handle) {
+        return new JdbiCarDAO(handle);
     }
 
 }
