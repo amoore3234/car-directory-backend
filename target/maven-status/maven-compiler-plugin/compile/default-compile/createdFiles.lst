@@ -1,0 +1,14 @@
+io\aimeo\Mappers\CustomerMapper.class
+io\aimeo\CarDirectoryApplication.class
+io\aimeo\resources\ClientResource$1.class
+io\aimeo\representations\Car.class
+io\aimeo\representations\Categories.class
+io\aimeo\resources\ClientResource.class
+io\aimeo\representations\Customer.class
+io\aimeo\db\CarDAO.class
+io\aimeo\Mappers\CarMapper.class
+io\aimeo\resources\CarResource.class
+io\aimeo\resources\CustomerResource.class
+io\aimeo\core\Paginator.class
+io\aimeo\CarDirectoryConfiguration.class
+io\aimeo\db\CustomerDAO.class
