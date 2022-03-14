@@ -7,7 +7,7 @@ database:
   user: postgres
 
   # the password
-  password: Atrain3235!
+  password: ********
 
   # the JDBC URL
   url: jdbc:postgresql://localhost/car_directory
