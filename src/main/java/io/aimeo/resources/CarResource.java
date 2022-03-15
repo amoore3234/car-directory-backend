@@ -9,26 +9,23 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.jdbi.v3.core.Jdbi;
-
-import io.aimeo.db.JdbiCarDAO;
+import io.aimeo.db.CarDAO;
 import io.aimeo.representations.Car;
 
 @Path("/cars")
 @Produces(MediaType.APPLICATION_JSON)
 public class CarResource {
 
-    private Jdbi jdbi;
+    private final CarDAO carDAO;
 
-    public CarResource(Jdbi jdbi) {
-        
+    public CarResource(CarDAO carDAO) {
+        this.carDAO = carDAO;
     }
 
     @GET
     @Path("/getAll")
     public Response getAll() {
-        JdbiCarDAO cars = new JdbiCarDAO(jdbi);
-        List<Car> gCars = cars.getAll();
+        List<Car> gCars = carDAO.getAll();
 
             return Response
                     .ok(gCars)
@@ -39,8 +36,7 @@ public class CarResource {
     @GET
     @Path("/{id}")
     public Response getById(@PathParam("id") int id) {
-        JdbiCarDAO cars = new JdbiCarDAO(jdbi);
-            Car carById = cars.getById(id);
+            Car carById = carDAO.getById(id);
 
             return Response
                     .ok(carById)
@@ -52,10 +48,9 @@ public class CarResource {
     @Path("/{limit}/{offset}/{pageID}")
     public Response getCars(@PathParam("limit") int limit, @PathParam("offset") long offset,
             @PathParam("pageID") int pageID) {
-        JdbiCarDAO jdbiCarDao = new JdbiCarDAO(jdbi);
 
             long offsets = limit * (pageID - 1);
-            List<Car> cars = jdbiCarDao.getCars(limit, offsets, pageID);
+            List<Car> cars = carDAO.getCars(limit, offsets, pageID);
 
             return Response
                     .ok(cars)
@@ -65,8 +60,7 @@ public class CarResource {
     @GET
     @Path("/trucks")
     public Response getTrucks() {
-        JdbiCarDAO jdbiCarDao = new JdbiCarDAO(jdbi);
-        List<Car> getTrucks = jdbiCarDao.getTrucks();
+        List<Car> getTrucks = carDAO.getTrucks();
 
             return Response
                     .ok(getTrucks)
@@ -77,8 +71,7 @@ public class CarResource {
     @GET
     @Path("/suvs")
     public Response getSuvs() {
-        JdbiCarDAO jdbiCarDao = new JdbiCarDAO(jdbi);
-            List<Car> getSuvs = jdbiCarDao.getSuvs();
+            List<Car> getSuvs = carDAO.getSuvs();
 
             return Response
                     .ok(getSuvs)
@@ -89,8 +82,7 @@ public class CarResource {
     @GET
     @Path("/sedans")
     public Response getSedans() {
-        JdbiCarDAO jdbiCarDao = new JdbiCarDAO(jdbi);
-        List<Car> getSuvs = jdbiCarDao.getSedans();
+        List<Car> getSuvs = carDAO.getSedans();
 
             return Response
                     .ok(getSuvs)

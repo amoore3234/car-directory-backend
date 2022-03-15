@@ -5,6 +5,7 @@ import org.jdbi.v3.core.Jdbi;
 
 import ca.grimoire.dropwizard.cors.CorsBundle;
 import io.aimeo.Mappers.CarMapper;
+import io.aimeo.db.JdbiCarDAO;
 import io.aimeo.representations.Car;
 import io.aimeo.resources.CarResource;
 import io.aimeo.resources.ClientResource;
@@ -44,7 +45,7 @@ public class CarDirectoryApplication extends Application<CarDirectoryConfigurati
         environment.jersey().register(new JsonProcessingExceptionMapper(true));
 
         environment.jersey().register(new CustomerResource(jdbi, environment.getValidator()));
-        environment.jersey().register(new CarResource(jdbi));
+        environment.jersey().register(new CarResource(new JdbiCarDAO(jdbi)));
         environment.jersey().register(new ClientResource(client));
 
     }

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Car implements Serializable {
     @JsonProperty("carID")
-    private long carID;
+    private int carID;
 
     @JsonProperty("categoryID")
     @JoinColumn(name = "categoryid", referencedColumnName = "categoryid")
@@ -54,25 +54,25 @@ public class Car implements Serializable {
         this.price = 0;
     }
 
-    public Car(long carID, int categoryID, String vin, String carName, String carModel, int carYear,
+    public Car(int carID, int categoryID, String vin, String carName, String carModel, int carYear,
             String carExterior, String carInterior, String carLocation, int price) {
-        setCarID(carID);
-        setCategoryID(categoryID);
-        setVin(vin);
-        setCarName(carName);
-        setCarModel(carModel);
-        setCarYear(carYear);
-        setCarExterior(carExterior);
-        setCarInterior(carInterior);
-        setCarLocation(carLocation);
-        setPrice(price);
+        this.carID = carID;
+        this.categoryID = categoryID;
+        this.vin = vin;
+        this.carName = carName;
+        this.carModel = carModel;
+        this.carYear = carYear;
+        this.carExterior = carExterior;
+        this.carInterior = carInterior;
+        this.carLocation = carLocation;
+        this.price = price;
     }
 
-    public Long getCarID() {
+    public int getCarID() {
         return carID;
     }
 
-    public void setCarID(Long carID) {
+    public void setCarID(int carID) {
         this.carID = carID;
     }
 
