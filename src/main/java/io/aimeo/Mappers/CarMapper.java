@@ -13,7 +13,7 @@ public class CarMapper implements RowMapper<Car> {
     @Override
     public Car map(ResultSet rs, StatementContext ctx) throws SQLException {
         Car car = new Car();
-        car.setCarID(rs.getLong("carid"));
+        car.setCarID(rs.getInt("carid"));
         car.setCategoryID(rs.getInt("categoryid"));
         car.setVin(rs.getString("vin"));
         car.setCarName(rs.getString("carname"));

@@ -6,9 +6,9 @@
             "port": 5432,
             "askForPassword": true,
             "driver": "PostgreSQL",
-            "name": "my_connection",
+            "name": "directory_connection",
             "database": "car_directory",
-            "username": "postgres"
+            "username": "directoryuser"
         }
     ],
     "java.configuration.updateBuildConfiguration": "automatic"
