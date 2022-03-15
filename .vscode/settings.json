@@ -4,7 +4,7 @@
             "previewLimit": 50,
             "server": "localhost",
             "port": 5432,
-            "askForPassword": false,
+            "askForPassword": true,
             "driver": "PostgreSQL",
             "name": "directory_connection",
             "database": "car_directory",
